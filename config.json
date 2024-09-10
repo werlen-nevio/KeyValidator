@@ -1,0 +1,65 @@
+{
+    "Validation": {
+        "text": {
+            "use": true,
+            "default": {
+                "notEmpty": true,
+                "minLength": 0,
+                "maxLength": -1
+            }
+        },
+        "number": {
+            "use": true,
+            "default": {
+                "notEmpty": true,
+                "min": 0,
+                "max": -1,
+                "integer": false,
+                "between": [-1, -1]
+            }
+        },
+        "phoneNumber": {
+            "use": true,
+            "default": {
+                "notEmpty": true,
+                "prefix": -1
+            }
+        },
+        "email": {
+            "use": true,
+            "default": {
+                "notEmpty": true
+            }     
+        },
+        "url": {
+            "use": true,
+            "default": {
+                "notEmpty": true
+            }    
+        },
+        "filePath": {
+            "use": true,
+            "default": {
+                "notEmpty": true
+            }    
+        },
+        "time": {
+            "use": true,
+            "default": {
+                "notEmpty": true,
+                "between": [-1, -1],
+                "after": -1,
+                "before": -1
+            }
+        },
+        "date": {
+            "use": true,
+            "default": {
+                "notEmpty": true,
+                "between": [-1, -1],
+                "after": -1,
+                "before": -1
+            }
+        }
+    }
+}
