@@ -44,8 +44,8 @@ class KeyValidator {
      */
     disableForms() {
         $('.keyValidator').each(function(){
-            $(this).find('form').on("submit", function (e) {
-                e.stopPropagation();
+            $(this).on("submit", function (e) {
+                e.preventDefault();
             });
         });
     }
