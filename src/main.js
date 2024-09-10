@@ -6,10 +6,17 @@ class KeyValidator {
     async init() {
         const config = await this.loadConfig();
         this.config = config;
-        // todo: make all forms with class not submittable
+
         this.disableForms();
     }
   
+    /**
+     * This async function loads a configuration file (config.json) via a fetch request.
+     * 
+     * - The fetch request uses the `reload` cache option. (After development, the cache option can be removed.)
+     * 
+     * - After a successful fetch, the function parses the response as JSON and returns the config object.
+     */
     async loadConfig() {
         try {
             const response = await fetch('config.json', {cache: "reload"});
@@ -26,6 +33,15 @@ class KeyValidator {
         }
     }
 
+    /**
+     * This function disables form submissions for all forms with the class 'keyValidator'.
+     * 
+     * - For each form, an event listener is attached to the 'submit' event.
+     * 
+     * - Inside the event handler, `e.preventDefault()` is called to prevent the form from being submitted.
+     * 
+     * - As a result, any form with the 'keyValidator' class will not submitted when the submit button is clicked or when the form is triggered to submit.
+     */
     disableForms() {
         $('.keyValidator').each(function(){
             $(this).find('form').on("submit", function (e) {
