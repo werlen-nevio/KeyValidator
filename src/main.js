@@ -7,7 +7,7 @@ class KeyValidator {
         const config = await this.loadConfig();
         this.config = config;
 
-        this.disableForms();
+        this.addEventListenerToForms();
     }
   
     /**
@@ -42,11 +42,39 @@ class KeyValidator {
      * 
      * - As a result, any form with the 'keyValidator' class will not submitted when the submit button is clicked or when the form is triggered to submit.
      */
-    disableForms() {
-        $('.keyValidator').each(function(){
-            $(this).on("submit", function (e) {
+    addEventListenerToForms() {
+        $('.keyValidator').each((_, form) => {
+            $(form).on("submit", async (e) => {
                 e.preventDefault();
+                
+                let validation = await this.validateForm($(form));
+        
+                console.log( validation );
             });
         });
+    }    
+
+    async validateForm(form) {
+        let validation = {
+            valid: true,
+            errors: []
+        };
+
+        $(form).find('input').each((index, input) => {
+            var inputType = $(input).attr('type');
+
+            let isInputValid = true;    
+            let vValidateInput = this.config.Validation[inputType].use;
+
+            if (vValidateInput) {
+                isInputValid = this.validateInput($(input));
+            }
+        });
+
+        return validation;
+    }
+
+    async validateInput(input) {
+        return true;
     }
 }
